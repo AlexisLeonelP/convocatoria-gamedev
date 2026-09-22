@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curaduría: Game Dev Night</title>
+    <style>
+        body {
+            background-color: #121212; 
+            background-image: radial-gradient(circle at top, #361500 0%, #121212 50%);
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .form-container {
+            background-color: #1e1e1e;
+            width: 100%;
+            max-width: 650px;
+            padding: 30px;
+            border-top: 6px solid #ff6600;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(255, 102, 0, 0.15);
+        }
+        h1 {
+            color: #ff6600;
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 28px;
+        }
+        h2 {
+            color: #ff8833;
+            border-bottom: 1px dashed #555;
+            padding-bottom: 10px;
+            margin-top: 35px;
+            font-size: 20px;
+        }
+        p {
+            text-align: center;
+            color: #aaaaaa;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #eeeeee;
+        }
+        .help-text {
+            font-size: 12px;
+            color: #ffaa66;
+            margin-top: 4px;
+            display: block;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background-color: #2b2b2b;
+            color: #ffffff;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #ff6600;
+            box-shadow: 0 0 5px rgba(255, 102, 0, 0.5);
+        }
+        button {
+            width: 100%;
+            background-color: #ff6600;
+            color: #ffffff;
+            padding: 15px;
+            border: none;
+            border-radius: 4px;
+            margin-top: 40px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #e65c00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>Game Dev Night 🎃🦇</h1>
+        <p>Postula tu videojuego para la exhibición en el patio.</p>
+
+        <form action="https://formspree.io/f/xqpaqbrk" method="POST">
+            
+            <h2>👻 Datos del Representante y Equipo</h2>
+
+            <label for="equipo">Nombre del equipo o estudio de desarrollo:</label>
+            <input type="text" id="equipo" name="equipo" required>
+
+            <label for="representante">Nombre completo del representante:</label>
+            <input type="text" id="representante" name="representante" required>
+
+            <label for="universidad">¿De qué universidad provienen?</label>
+            <select id="universidad" name="universidad" required onchange="mostrarOtraUniversidad()">
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="UPN">UPN</option>
+                <option value="UCV">UCV</option>
+                <option value="UCSS">UCSS</option>
+                <option value="UTP">UTP</option>
+                <option value="UNI">UNI</option>
+                <option value="UNMSM">UNMSM</option>
+                <option value="Otra">Otra</option>
+            </select>
+
+            <div id="div_otra_uni" style="display: none;">
+                <label for="otra_universidad">Especifica el nombre de tu universidad:</label>
+                <input type="text" id="otra_universidad" name="otra_universidad" placeholder="Ej: Universidad de Lima">
+            </div>
+
+            <label for="whatsapp">Número de WhatsApp para contacto rápido:</label>
+            <input type="tel" id="whatsapp" name="whatsapp" required>
+
+            <h2>👾 Información sobre el Videojuego</h2>
+
+            <label for="titulo">Título del juego:</label>
+            <input type="text" id="titulo" name="titulo" required>
+
+            <label for="genero">Género principal:</label>
+            <input type="text" id="genero" name="genero" required>
+
+            <label for="pitch">Describe tu juego y su mecánica principal en máximo 3 líneas.</label>
+            <textarea id="pitch" name="pitch" rows="3" required></textarea>
+
+            <label for="link_build">Enlace de la build jugable</label>
+            <span class="help-text">Asegúrate de que el enlace sea público para que nuestro equipo pueda descargarlo y probarlo.</span>
+            <input type="url" id="link_build" name="link_build" required>
+
+            <label for="hardware">Requerimientos de hardware para la exhibición:</label>
+            <textarea id="hardware" name="hardware" rows="3" required></textarea>
+
+            <button type="submit">Enviar Proyecto 🕸️</button>
+        </form>
+    </div>
+
+    <script>
+        function mostrarOtraUniversidad() {
+            var selectUni = document.getElementById("universidad");
+            var divOtra = document.getElementById("div_otra_uni");
+            var inputOtra = document.getElementById("otra_universidad");
+            
+            if (selectUni.value === "Otra") {
+                divOtra.style.display = "block"; // Muestra el cuadro de texto
+                inputOtra.required = true; // Lo vuelve obligatorio
+            } else {
+                divOtra.style.display = "none"; // Oculta el cuadro de texto
+                inputOtra.required = false; // Quita lo obligatorio
+                inputOtra.value = ""; // Limpia lo que hayan escrito si se arrepienten
+            }
+        }
+    </script>
+</body>
+</html>
